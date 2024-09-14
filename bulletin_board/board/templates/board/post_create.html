@@ -1,0 +1,322 @@
+{% extends 'board/base.html' %}
+
+{% block title %}게시글 작성{% endblock %}
+
+{% block content %}
+<h1>쿠팡이츠 필수 정보사항</h1>
+
+<form method="POST" enctype="multipart/form-data" id="post-form">
+    {% csrf_token %}
+
+    <!-- 텍스트 필드들 -->
+    <div class="form-group">
+        <label for="id_business_number">사업자등록번호</label>
+        {{ form.business_number }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_store_id">스토어아이디</label>
+        {{ form.store_id }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_store_name">스토어명</label>
+        {{ form.store_name }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_region">지역</label>
+        {{ form.region }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_store_type">타입</label>
+        {{ form.store_type }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_min_order_amount">최소주문금액</label>
+        {{ form.min_order_amount }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_employee_number">사번(대행사코드)</label>
+        {{ form.employee_number }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_notes">비고</label>
+        {{ form.notes }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_store_category">스토어 유형</label>
+        {{ form.store_category }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_sticker_status">스티커 부착 유무</label>
+        {{ form.sticker_status }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_transfer_status">양도양수</label>
+        {{ form.transfer_status }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_packaging">포장</label>
+        {{ form.packaging }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_food_tech">푸드테크</label>
+        {{ form.food_tech }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_multiple_pos">다중포스</label>
+        {{ form.multiple_pos }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_store_phone">매장전화번호</label>
+        {{ form.store_phone }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_owner_contact">점주 연락처</label>
+        {{ form.owner_contact }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_email">이메일</label>
+        {{ form.email }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_competitor_status">경쟁사 운영여부</label>
+        {{ form.competitor_status }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_bm">BM</label>
+        {{ form.bm }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_bm1">BM1</label>
+        {{ form.bm1 }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_menu_board">메뉴판</label>
+        {{ form.menu_board }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_origin_info">원산지</label>
+        {{ form.origin_info }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_business_hours">영업시간</label>
+        {{ form.business_hours }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_business_hours">이미지</label>
+        {{ form.images }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_account_id">계정 아이디</label>
+        {{ form.account_id }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_password">비번</label>
+        {{ form.password }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_open_date">오픈희망일</label>
+        {{ form.open_date }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_special_notes">특이사항</label>
+        {{ form.special_notes }}
+    </div>
+
+    <!-- 이미지 필드들 -->
+    <div class="form-group">
+        <label for="id_image1">사업자등록증 사진</label>
+        <div class="drag-drop-area" id="drop-area-image1">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image1 }}  
+        </div>
+        <div id="preview-image1" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image2">영업신고증 사진</label>
+        <div class="drag-drop-area" id="drop-area-image2">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image2 }}  
+        </div>
+        <div id="preview-image2" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image3">통장사본 사진</label>
+        <div class="drag-drop-area" id="drop-area-image3">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image3 }}  
+        </div>
+        <div id="preview-image3" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image4">식품안전나라 영업신고 상세페이지</label>
+        <div class="drag-drop-area" id="drop-area-image4">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image4 }}  
+        </div>
+        <div id="preview-image4" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image5">배민 앱 캡쳐본(메인)</label>
+        <div class="drag-drop-area" id="drop-area-image5">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image5 }}  
+        </div>
+        <div id="preview-image5" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image6">배민 앱 캡쳐본(상세정보)</label>
+        <div class="drag-drop-area" id="drop-area-image6">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image6 }}  
+        </div>
+        <div id="preview-image6" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image7">포스기 설치 사진</label>
+        <div class="drag-drop-area" id="drop-area-image7">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image7 }}  
+        </div>
+        <div id="preview-image7" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image8">쿠팡이츠 스티커</label>
+        <div class="drag-drop-area" id="drop-area-image8">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image8 }}  
+        </div>
+        <div id="preview-image8" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image9">스토어 앱 설치 사진</label>
+        <div class="drag-drop-area" id="drop-area-image9">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image9 }}  
+        </div>
+        <div id="preview-image9" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image10">설문조사 안내 캡쳐본</label>
+        <div class="drag-drop-area" id="drop-area-image10">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image10 }}  
+        </div>
+        <div id="preview-image10" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="id_image11">이미지 사용 정책 확인</label>
+        <div class="drag-drop-area" id="drop-area-image11">
+            <p>이미지를 드래그하거나 클릭하여 업로드하세요.</p>
+            {{ form.image11 }}  
+        </div>
+        <div id="preview-image11" class="image-preview"></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">작성하기</button>
+</form>
+
+<a href="{% url 'post_list' %}">목록으로 돌아가기</a>
+
+<script>
+// 드래그 앤 드랍 및 파일 미리보기 처리
+function setupDragAndDrop(inputElement, dropAreaId, previewId) {
+    let dropArea = document.getElementById(dropAreaId);
+    let input = inputElement;
+    let preview = document.getElementById(previewId);
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false);
+    });
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        let dt = e.dataTransfer;
+        let files = dt.files;
+        input.files = files; // 폼의 input 요소에 파일 설정
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        preview.innerHTML = '';  // 기존 미리보기 초기화
+        ([...files]).forEach(previewFile);
+    }
+
+    function previewFile(file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function() {
+            let img = document.createElement('img');
+            img.src = reader.result;
+            img.style.maxWidth = '200px';
+            img.style.margin = '10px';
+            preview.appendChild(img);
+        }
+    }
+}
+
+// 각 이미지 필드에 드래그 앤 드랍 기능 연결
+setupDragAndDrop(document.getElementById('id_image1'), 'drop-area-image1', 'preview-image1');
+setupDragAndDrop(document.getElementById('id_image2'), 'drop-area-image2', 'preview-image2');
+setupDragAndDrop(document.getElementById('id_image3'), 'drop-area-image3', 'preview-image3');
+setupDragAndDrop(document.getElementById('id_image4'), 'drop-area-image4', 'preview-image4');
+setupDragAndDrop(document.getElementById('id_image5'), 'drop-area-image5', 'preview-image5');
+setupDragAndDrop(document.getElementById('id_image6'), 'drop-area-image6', 'preview-image6');
+setupDragAndDrop(document.getElementById('id_image7'), 'drop-area-image7', 'preview-image7');
+setupDragAndDrop(document.getElementById('id_image8'), 'drop-area-image8', 'preview-image8');
+setupDragAndDrop(document.getElementById('id_image9'), 'drop-area-image9', 'preview-image9');
+setupDragAndDrop(document.getElementById('id_image10'), 'drop-area-image10', 'preview-image10');
+setupDragAndDrop(document.getElementById('id_image11'), 'drop-area-image11', 'preview-image11');
+</script>
+
+{% endblock %}

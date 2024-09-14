@@ -1,0 +1,10 @@
+{% extends 'board/base.html' %}
+
+{% block title %}접근 불가{% endblock %}
+
+{% block content %}
+<h1>접근 권한이 없습니다</h1>
+<p>이 게시글에 접근할 수 있는 권한이 없습니다.</p>
+
+<a href="{% url 'post_list' %}">목록으로 돌아가기</a>
+{% endblock %}

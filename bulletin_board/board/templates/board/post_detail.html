@@ -1,0 +1,245 @@
+{% extends 'board/base.html' %}
+
+{% block title %}게시글 상세 정보{% endblock %}
+
+{% block content %}
+<div class="post-detail-container">
+    <h1 class="post-title">{{ post.store_name }}</h1>
+
+    <!-- 작성자 정보 및 작성일 -->
+    <div class="post-meta">
+        <table class="post-table">
+            <tr>
+                <th>작성자</th>
+                <td>{{ post.user.name }}</td>
+            </tr>
+            <tr>
+                <th>지부</th>
+                <td>{{ post.user.branch }}</td>
+            </tr>
+                
+            </tr>
+                <th>작성일</th>
+                <td>{{ post.created_at|date:"Y-m-d H:i" }}</td>
+            </tr>
+            <!-- <p>작성자: {{ post.user.name }}</p> -->
+            <!-- <p>작성자: {{ post.user.branch }}</p>
+            <p>작성일: {{ post.created_at|date:"Y-m-d H:i" }}</p> -->
+    </table>
+    </div>
+
+    <!-- 스토어 정보 -->
+    <div class="post-info">
+        <h2>스토어 정보</h2>
+        <table class="post-table">
+            <tr>
+                <th>사업자등록번호</th>
+                <td>{{ post.business_number }}</td>
+            </tr>
+            <tr>
+                <th>스토어아이디</th>
+                <td>{{ post.store_id }}</td>
+            </tr>
+            <tr>
+                <th>지역</th>
+                <td>{{ post.region }}</td>
+            </tr>
+            <tr>
+                <th>타입</th>
+                <td>{{ post.store_type }}</td>
+            </tr>
+            <tr>
+                <th>최소주문금액</th>
+                <td>{{ post.min_order_amount }}</td>
+            </tr>
+            <tr>
+                <th>사번(대행사코드)</th>
+                <td>{{ post.employee_number }}</td>
+            </tr>
+            <tr>
+                <th>비고</th>
+                <td>{{ post.notes }}</td>
+            </tr>
+            
+            <tr>
+                <th>스토어 유형</th>
+                <td>{{ post.store_category }}</td>
+            </tr>
+            <tr>
+                <th>스티커 부착 유무</th>
+                <td>{{ post.sticker_status }}</td>
+            </tr>
+            <tr>
+                <th>양도양수</th>
+                <td>{{ post.transfer_status }}</td>
+            </tr>
+            <tr>
+                <th>포장</th>
+                <td>{{ post.packaging }}</td>
+            </tr>
+            <tr>
+                <th>푸드테크</th>
+                <td>{{ post.food_tech }}</td>
+            </tr>
+            <tr>
+                <th>다중포스</th>
+                <td>{{ post.multiple_pos }}</td>
+            </tr>
+            <tr>
+                <th>매장전화번호</th>
+                <td>{{ post.store_phone }}</td>
+            </tr>
+            <tr>
+                <th>점주 연락처</th>
+                <td>{{ post.owner_contact }}</td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td>{{ post.email }}</td>
+            </tr>
+            <tr>
+                <th>경쟁사 운영여부</th>
+                <td>{{ post.competitor_status }}</td>
+            </tr>
+            <tr>
+                <th>BM</th>
+                <td>{{ post.bm }}</td>
+            </tr>
+            <tr>
+                <th>BM1</th>
+                <td>{{ post.bm1 }}</td>
+            </tr>
+            <tr>
+                <th>메뉴판</th>
+                <td>{{ post.menu_board }}</td>
+            </tr>
+            <tr>
+                <th>원산지</th>
+                <td>{{ post.origin_info }}</td>
+            </tr>
+            <tr>
+                <th>영업시간</th>
+                <td>{{ post.business_hours }}</td>
+            </tr>
+            <tr>
+                <th>계정 아이디</th>
+                <td>{{ post.account_id }}</td>
+            </tr>
+            <tr>
+                <th>비번</th>
+                <td>{{ post.password }}</td>
+            </tr>
+            <tr>
+                <th>오픈희망일</th>
+                <td>{{ post.open_date }}</td>
+            </tr>
+            <tr>
+                <th>특이사항</th>
+                <td>{{ post.special_notes }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 이미지 섹션 -->
+    <div class="post-images">
+        <h2>첨부 이미지</h2>
+        <div class="image-grid">
+            {% if post.image1 %}
+                <div class="image-box"><img src="{{ post.image1.url }}" alt="사업자등록증 사진" class="thumbnail" onclick="openModal(0)"></div>
+            {% endif %}
+            {% if post.image2 %}
+                <div class="image-box"><img src="{{ post.image2.url }}" alt="영업신고증 사진" class="thumbnail" onclick="openModal(1)"></div>
+            {% endif %}
+            {% if post.image3 %}
+                <div class="image-box"><img src="{{ post.image3.url }}" alt="통장사본 사진" class="thumbnail" onclick="openModal(2)"></div>
+            {% endif %}
+            {% if post.image4 %}
+                <div class="image-box"><img src="{{ post.image4.url }}" alt="식품안전나라 영업신고 상세페이지" class="thumbnail" onclick="openModal(3)"></div>
+            {% endif %}
+            {% if post.image5 %}
+                <div class="image-box"><img src="{{ post.image5.url }}" alt="배민 앱 캡쳐본(메인)" class="thumbnail" onclick="openModal(4)"></div>
+            {% endif %}
+            {% if post.image6 %}
+                <div class="image-box"><img src="{{ post.image6.url }}" alt="배민 앱 캡쳐본(상세정보)" class="thumbnail" onclick="openModal(5)"></div>
+            {% endif %}
+            {% if post.image7 %}
+                <div class="image-box"><img src="{{ post.image7.url }}" alt="포스기 설치 사진" class="thumbnail" onclick="openModal(6)"></div>
+            {% endif %}
+            {% if post.image8 %}
+                <div class="image-box"><img src="{{ post.image8.url }}" alt="쿠팡이츠 스티커" class="thumbnail" onclick="openModal(7)"></div>
+            {% endif %}
+            {% if post.image9 %}
+                <div class="image-box"><img src="{{ post.image9.url }}" alt="스토어 앱 설치 사진" class="thumbnail" onclick="openModal(8)"></div>
+            {% endif %}
+            {% if post.image10 %}
+                <div class="image-box"><img src="{{ post.image10.url }}" alt="설문조사 안내 캡쳐본" class="thumbnail" onclick="openModal(9)"></div>
+            {% endif %}
+            {% if post.image11 %}
+                <div class="image-box"><img src="{{ post.image11.url }}" alt="이미지 사용 정책 확인" class="thumbnail" onclick="openModal(10)"></div>
+            {% endif %}
+        </div>
+    </div>
+
+    <a href="{% url 'post_list' %}" class="btn btn-primary">목록으로 돌아가기</a>
+</div>
+
+<!-- 모달 창 -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+
+    <!-- 화살표 버튼 추가 -->
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+</div>
+
+<script>
+// 이미지 배열 만들기
+let images = [
+    {% if post.image1 %}"{{ post.image1.url }}",{% endif %}
+    {% if post.image2 %}"{{ post.image2.url }}",{% endif %}
+    {% if post.image3 %}"{{ post.image3.url }}",{% endif %}
+    {% if post.image4 %}"{{ post.image4.url }}",{% endif %}
+    {% if post.image5 %}"{{ post.image5.url }}",{% endif %}
+    {% if post.image6 %}"{{ post.image6.url }}",{% endif %}
+    {% if post.image7 %}"{{ post.image7.url }}",{% endif %}
+    {% if post.image8 %}"{{ post.image8.url }}",{% endif %}
+    {% if post.image9 %}"{{ post.image9.url }}",{% endif %}
+    {% if post.image10 %}"{{ post.image10.url }}",{% endif %}
+    {% if post.image11 %}"{{ post.image11.url }}"{% endif %}
+];
+
+let currentIndex = 0;
+
+// 모달 창을 열고 해당 이미지 표시
+function openModal(index) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+
+    modal.style.display = "block";
+    currentIndex = index;
+    modalImg.src = images[currentIndex];
+}
+
+// 모달 창 닫기
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none";
+}
+
+// 화살표 버튼 클릭 시 이미지 변경
+function changeImage(direction) {
+    currentIndex += direction;
+
+    // 이미지 배열 범위를 벗어나지 않도록 설정
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    } else if (currentIndex >= images.length) {
+        currentIndex = 0;
+    }
+
+    var modalImg = document.getElementById("modalImage");
+    modalImg.src = images[currentIndex];
+}
+</script>
+{% endblock %}

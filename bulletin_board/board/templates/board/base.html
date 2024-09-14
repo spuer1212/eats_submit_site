@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}쿠팡이츠 가입 홈페이지{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+     <!-- Django 메시지 프레임워크로 메시지 표시 -->
+     {% if messages %}
+        <script>
+            {% for message in messages %}
+                alert('{{ message }}');  // JavaScript alert로 메시지를 팝업 창으로 표시
+            {% endfor %}
+        </script>
+    {% endif %}
+
+    <header>
+        <nav class="navbar">
+            <h1>
+                <a href="{% url 'post_list' %}">
+                    <img src="{% static 'img/coupang_eats.jpg' %}" alt="My Site Logo" class="site-logo"> <!-- 로고 이미지 추가 -->
+                </a>
+            </h1>
+            <div class="navbar-buttons">
+                {% if user.is_authenticated %}
+                    <div class="user-info">
+                        <span class="username">환영합니다, {{ user.username }}님</span>
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="button-logout">로그아웃</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div><a href="{% url 'login' %}" class="button-login">로그인</a></div>
+                    <div><a href="{% url 'register' %}" class="button-signup">회원가입</a></div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Copyright © 2024 쿠팡이츠 공식 협력사 KK</p>
+    </footer>
+</body>
+</html>
+
